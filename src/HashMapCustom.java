@@ -132,9 +132,21 @@ class HashMapCustom<K, V> {
             return null;
         }
     }
-
-
-
+    /*
+     Метод удаляет пару ключ-значение в HashMapCustom.
+     1) находим hash по deleteKey
+     2) Если ячейка в table = null возвращаем false
+     3) В обратном случае создаем две переменные previous = null, current = table[hash];
+     4) Запускаем цикл пока current != null, если такое произошло то мы достигли последнего узла входа в контейнер.
+     5) Проверяем если current.key.equals(deleteKey)
+     6) Проверяем если previous==null то удаляем первый узел записи и записываем новое значение следующего элемента
+        возвращаем true
+     7) В ином случае previous.next=current.next возвращаем true
+     8) Удаляем ключ из keySetMap и создаем переменные deleteValue = null, deleteEntry = null
+     9) Находим в entrySetMap нужный нам объект и его значения, и удаляем их из valuesMap entrySetMap
+     10) Приравниваем previous к current, current приравниваем к current.next
+     11) Возвращаем false
+     */
     public boolean remove(K deleteKey){
 
         int hash=hash(deleteKey);
@@ -145,9 +157,9 @@ class HashMapCustom<K, V> {
             Entry<K,V> previous = null;
             Entry<K,V> current = table[hash];
 
-            while(current != null){ //we have reached last entry node of bucket.
+            while(current != null){
                 if(current.key.equals(deleteKey)){
-                    if(previous==null){  //delete first entry node.
+                    if(previous==null){
                         table[hash]=table[hash].next;
                         return true;
                     }

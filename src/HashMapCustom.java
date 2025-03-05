@@ -16,22 +16,23 @@ class HashMapCustom<K, V> {
         K key;
         V value;
         Entry<K,V> next;
-
+        //Вложенный класс хронящий в себе ключ и значение
         public Entry(K key, V value, Entry<K,V> next){
             this.key = key;
             this.value = value;
             this.next = next;
         }
+        //Возвращает ключ
         public K getKey()
         {
             return key;
         }
-
+        //Возвращает значение
         public V getValue()
         {
             return value;
         }
-
+        //Переопределяем метод toString так что бы он возвращал key + "=" + value
         @Override
         public final String toString() { return key + "=" + value; }
 

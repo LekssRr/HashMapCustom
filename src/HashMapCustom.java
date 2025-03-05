@@ -73,11 +73,10 @@ class HashMapCustom<K, V> {
      */
     public void put(K newKey, V data){
         if(newKey==null)
-            return;    //does not allow to store null.
+            return;
 
-        //calculate hash of key.
         int hash=hash(newKey);
-        //create new entry.
+
         Entry<K,V> newEntry = new Entry<K,V>(newKey, data, null);
         keySetMap.add(newEntry.getKey());
         valuesMap.add(newEntry.getValue());
